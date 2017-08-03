@@ -1,20 +1,35 @@
 import React from 'react';
+import styled from 'styled-components';
 
-import { A, Subtext } from '../styles';
+export const Subtext = styled.div`
+  font-size: 8pt;
+  color: #828282;
+  margin-bottom: 0.5em;
+`;
 
+export const Post = styled.a`
+  :link {
+    color: #000000;
+    text-decoration: none;
+  }
+  :visited {
+    color: #828282;
+    text-decoration: none;
+  }
+`;
 
 export default class PostItem extends React.Component {
   render() {
-    const title = this.props.parent.title;
-    const mappedTitles = title.map(title =>
-      <li key={title.objectID}>
-        <A href={title.url}>{title.title}</A>
-        <Subtext>{title.points} points by {title.author} | {title.num_comments} comments </Subtext>
-      </li>);
     return (
-      <ol>
-        {mappedTitles}
-      </ol>
+      <li key={this.props.objectID}>
+        <Post href={this.props.url}>
+          {this.props.title}
+        </Post>
+        <Subtext>
+          {this.props.points} {this.props.points > 1 ? 'points' : 'point'} by {this.props.author} |{' '}
+          {this.props.num_comments} comments{' '}
+        </Subtext>
+      </li>
     );
   }
 }

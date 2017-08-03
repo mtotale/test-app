@@ -1,11 +1,11 @@
-var debug = process.env.NODE_ENV !== "production";
-var webpack = require('webpack');
-var path = require('path');
+const debug = process.env.NODE_ENV !== 'production';
+const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
-  context: path.join(__dirname, "src"),
-  devtool: debug ? "inline-sourcemap" : null,
-  entry: "./index.js",
+  context: path.join(__dirname, 'src'),
+  devtool: debug ? 'inline-sourcemap' : null,
+  entry: './index.js',
   externals: {
     fs: '{}',
     child_process: '{}',
@@ -18,18 +18,24 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           presets: ['react', 'es2015', 'stage-0'],
-          plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy'],
-        }
-      }
-    ]
+          plugins: [
+            'react-html-attrs',
+            'transform-class-properties',
+            'transform-decorators-legacy',
+          ],
+        },
+      },
+    ],
   },
   output: {
-    path: __dirname + "/src/",
-    filename: "test.min.js"
+    path: `${__dirname}/src/`,
+    filename: 'test.min.js',
   },
-  plugins: debug ? [] : [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
-  ],
+  plugins: debug
+    ? []
+    : [
+        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
+      ],
 };

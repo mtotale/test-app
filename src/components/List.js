@@ -5,11 +5,17 @@ import PostItem from './PostItem';
 
 export default class List extends React.Component {
   render() {
+    let mappedTitles;
     if (this.props.type === 'comment') {
-      return <CommentItem {...this.props} />;
+      mappedTitles = this.props.parent.title.map(item => <CommentItem {...item} />);
     }
-    if (this.props.type === 'title') {
-      return <PostItem {...this.props} />;
+    if (this.props.type === 'post') {
+      mappedTitles = this.props.parent.title.map(item => <PostItem {...item} />);
     }
+    return (
+      <ol>
+        {mappedTitles}
+      </ol>
+    );
   }
 }

@@ -5,24 +5,12 @@ import { getTopPosts } from '../actions/Action';
 
 import List from './List';
 
-@connect(store => ({
-  title: store.home.home,
-  isFetched: store.home.isFetched,
-  isFetching: store.home.isFetching,
-  error: store.home.error,
-}))
-export default class Home extends React.Component {
-  state = {
-    title: [],
-  };
-
-  getContents() {
-    this.props.dispatch(getTopPosts());
-  }
+export class Home extends React.Component {
+  state = {};
 
   componentWillMount() {
     if (!this.props.isFetched) {
-      this.getContents();
+      this.props.getContents();
     }
   }
 
@@ -32,13 +20,34 @@ export default class Home extends React.Component {
     }
 
     if (this.props.error) {
-      return <button onClick={() => this.getContents()}>Try Again</button>;
+      return <button onClick={() => this.props.getContents()}>Try Again</button>;
     }
 
     return (
       <div>
-        <List parent={this.props} type={'title'} />
+        <List parent={this.props} type={'post'} />
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    title: state.home.home,
+    isFetched: state.home.isFetched,
+    isFetching: state.home.isFetching,
+    error: state.home.error,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getContents: () => {
+      dispatch(getTopPosts());
+    },
+  };
+}
+
+const HomeContainer = connect(mapStateToProps, mapDispatchToProps)(Home);
+
+export default HomeContainer;

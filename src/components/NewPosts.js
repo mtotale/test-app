@@ -4,24 +4,13 @@ import { connect } from 'react-redux';
 import { getNewPosts } from '../actions/Action';
 import List from './List';
 
-@connect(store => ({
-  title: store.newPosts.newPosts,
-  isFetched: store.newPosts.isFetched,
-  isFetching: store.newPosts.isFetching,
-  error: store.newPosts.error,
-}))
-export default class NewPosts extends React.Component {
-  state = {
-    title: [],
-  };
+export class NewPosts extends React.Component {
+  state = {};
 
   componentWillMount() {
     if (!this.props.isFetched) {
-      this.getContents();
+      this.props.getContents();
     }
-  }
-  getContents() {
-    this.props.dispatch(getNewPosts());
   }
 
   render() {
@@ -30,13 +19,33 @@ export default class NewPosts extends React.Component {
     }
 
     if (this.props.error) {
-      return <button onClick={() => this.getContents()}>Try Again</button>;
+      return <button onClick={() => this.props.getContents()}>Try Again</button>;
     }
 
     return (
       <div>
-        <List parent={this.props} type={'title'} />
+        <List parent={this.props} type={'post'} />
       </div>
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    title: state.newPosts.newPosts,
+    isFetched: state.newPosts.isFetched,
+    isFetching: state.newPosts.isFetching,
+    error: state.newPosts.error,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getContents: () => {
+      dispatch(getNewPosts());
+    },
+  };
+}
+
+const NewPostsContainer = connect(mapStateToProps, mapDispatchToProps)(NewPosts);
+
+export default NewPostsContainer;

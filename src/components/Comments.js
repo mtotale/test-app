@@ -5,25 +5,13 @@ import { getComments } from '../actions/Action';
 
 import List from './List';
 
-@connect(store => ({
-  title: store.comments.comments,
-  isFetched: store.comments.isFetched,
-  isFetching: store.comments.isFetching,
-  error: store.comments.error,
-}))
-export default class Comments extends React.Component {
-  state = {
-    title: [],
-  };
+export class Comments extends React.Component {
+  state = {};
 
   componentWillMount() {
     if (!this.props.isFetched) {
-      this.getContents();
+      this.props.getContents();
     }
-  }
-
-  getContents() {
-    this.props.dispatch(getComments());
   }
 
   render() {
@@ -32,7 +20,7 @@ export default class Comments extends React.Component {
     }
 
     if (this.props.error) {
-      return <button onClick={() => this.getContents()}>Try Again</button>;
+      return <button onClick={() => this.props.getContents()}>Try Again</button>;
     }
 
     return (
@@ -42,3 +30,24 @@ export default class Comments extends React.Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    title: state.comments.comments,
+    isFetched: state.comments.isFetched,
+    isFetching: state.comments.isFetching,
+    error: state.comments.error,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getContents: () => {
+      dispatch(getComments());
+    },
+  };
+}
+
+const CommentsContainer = connect(mapStateToProps, mapDispatchToProps)(Comments);
+
+export default CommentsContainer;
