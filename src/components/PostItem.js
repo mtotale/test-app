@@ -1,22 +1,23 @@
 import React from 'react';
-import styled from 'styled-components';
+import glamorous from 'glamorous';
 
-export const Subtext = styled.div`
-  font-size: 8pt;
-  color: #828282;
-  margin-bottom: 0.5em;
-`;
 
-export const Post = styled.a`
-  :link {
-    color: #000000;
-    text-decoration: none;
-  }
-  :visited {
-    color: #828282;
-    text-decoration: none;
-  }
-`;
+export const Subtext = glamorous.div({
+  fontSize: '8pt',
+  color: '#828282',
+  marginBottom: '0.5em',
+});
+
+export const Post = glamorous.a({
+  ':link': {
+    color: '#000000',
+    textDecoration: 'none',
+  },
+  ':visited': {
+    color: '#828282',
+    textDecoration: 'none',
+  },
+});
 
 export default class PostItem extends React.Component {
   render() {
