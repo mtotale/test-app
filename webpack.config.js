@@ -1,6 +1,7 @@
 const debug = process.env.NODE_ENV !== 'production';
 const webpack = require('webpack');
 const path = require('path');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   context: path.join(__dirname, 'src'),
@@ -22,6 +23,7 @@ module.exports = {
             'react-html-attrs',
             'transform-class-properties',
             'transform-decorators-legacy',
+            'emotion/babel',
           ],
         },
       },
@@ -31,11 +33,10 @@ module.exports = {
     path: `${__dirname}/src/`,
     filename: 'test.min.js',
   },
-  plugins: debug
-    ? []
-    : [
-        new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
-      ],
+  plugins: [
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
+    new BundleAnalyzerPlugin(),
+  ],
 };

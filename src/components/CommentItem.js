@@ -1,30 +1,30 @@
 import React from 'react';
-import glamorous from 'glamorous';
+import styled from 'emotion/react';
 
-export const Comment = glamorous.li({
-  fontSize: '9pt',
-  color: '#000000',
-  marginBottom: '0.5cm',
-});
+const Comment = styled('li')`
+  font-size: 9pt;
+  color: #000000;
+  margin-bottom: 0.5cm;
+`;
 
-export const Subtext = glamorous.div({
-  fontSize: '8pt',
-  color: '#828282',
-  marginBottom: '0.5em',
-  '>a': {
-    ':link': {
-      color: '#828282',
-      textDecoration: 'none',
-    },
-    ':hover': {
-      textDecoration: 'underline',
-    },
-    ':visited': {
-      color: '#828282',
-      textDecoration: 'none',
-    },
-  },
-});
+const Subtext = styled('div')`
+  font-size: 8pt;
+  color: #828282;
+  margin-bottom: 0.5em;
+  & a {
+    &:link {
+      color: #828282;
+      text-decoration: none;
+    }
+    &:hover {
+      text-decoration: underline;
+    }
+    &:visited {
+      color: #828282;
+      text-decoration: none;
+    }
+  }
+`;
 
 export default class CommentItem extends React.Component {
   render() {

@@ -1,24 +1,30 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router';
 import { Switch } from 'react-router-dom';
-// import styled, { injectGlobal } from 'styled-components';
-import glamorous from 'glamorous';
+import { injectGlobal } from 'emotion';
+import styled from 'emotion/react';
 
 import HomeContainer from './Home';
 import CommentsContainer from './Comments';
 import NewPostsContainer from './NewPosts';
 import Header from './Header';
 
-const Body = glamorous.div({
-  backgroundColor: '#f6f6ef',
-  marginTop: '2px',
-  fontFamily: 'Verdana, Geneva, sans-serif',
-  color: '#828282',
-  fontSize: '10pt',
-  border: '0',
-  width: '85%',
-  margin: 'auto',
-});
+injectGlobal`
+  body {
+    font-family:Verdana, Geneva, sans-serif;
+    color:#828282;
+    font-size:10pt;
+    border:0;
+    width:85%;
+    background-color:#ffffff;
+    margin: auto;
+  }
+`;
+
+const Body = styled('div')`
+  background-color: #f6f6ef;
+  margin-top: 2px;
+`;
 
 export default class App extends React.Component {
   render() {

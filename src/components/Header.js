@@ -1,29 +1,27 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import glamorous from 'glamorous';
+import styled from 'emotion/react';
 
-const HeaderWrapper = glamorous.div({
-  border: '0',
-  width: '100%',
-  backgroundColor: '#ff6600',
-  paddingTop: '2px',
-  paddingLeft: '2px',
-});
+const HeaderWrapper = styled('div')`
+  border: 0;
+  width: 100%;
+  background-color: #ff6600;
+  padding-top: 2px;
+  padding-left: 2px;
+`;
 
-const TopLinks = glamorous(NavLink)(
-  {
-    color: 'black',
-    textDecoration: 'none',
-    '&.activetag': {
-      color: 'white',
-    },
-  },
-  ({ isHackerNews = false }) => ({
-    marginRight: isHackerNews ? '50px' : 0,
-  }),
-);
+const TopLinks = styled(NavLink)`
+  color: black;
+  text-decoration: none;
+  margin-right: ${props => (props.isHackerNews ? '53px' : 0)};
+  &.activetag {
+    color: white;
+  }
+`;
 
-export const Logo = glamorous.img({ border: '1px white solid' });
+const Logo = styled('img')`
+  border: 1px white solid;
+`;
 
 export default class Header extends React.Component {
   render() {
