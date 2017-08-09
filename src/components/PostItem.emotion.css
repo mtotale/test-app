@@ -1,8 +1,12 @@
-.styled-Post-1k59qij:link {
+.styled-Post-kthu8d:link {
     color: #000000;
     text-decoration: none
 }
-.styled-Post-1k59qij:visited {
+.styled-Post-kthu8d:hover {
+    color: #828282;
+    text-decoration: underline
+}
+.styled-Post-kthu8d:visited {
     color: #828282;
     text-decoration: none
 }

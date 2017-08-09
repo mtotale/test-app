@@ -13,29 +13,29 @@ const HeaderWrapper = styled('div')`
 const TopLinks = styled(NavLink)`
   color: black;
   text-decoration: none;
-  margin-right: ${props => (props.isHackerNews ? '53px' : 0)};
+
+  margin-right: ${props => (props.isHackerNews ? '2px' : 0)};
+
   &.activetag {
     color: white;
   }
 `;
 
-const Logo = styled('img')`
-  border: 1px white solid;
-`;
+export const Logo = styled.img`border: 1px white solid;`;
 
 export default class Header extends React.Component {
   render() {
     return (
-      <HeaderWrapper className="Header">
-        <TopLinks className="TopLinks" isHackerNews to="/home">
-          <Logo className="Logo" src="../pics/y18.gif" /> <b>Hacker News</b>
+      <HeaderWrapper>
+        <TopLinks isHackerNews to="/home">
+          <Logo src="../pics/y18.gif" /> <b>Hacker News</b>
         </TopLinks>{' '}
         {'  '}
-        <TopLinks className="TopLinks" activeClassName="activetag" to="/newposts">
+        <TopLinks activeClassName="activetag" to="/newposts">
           new
         </TopLinks>{' '}
         |{' '}
-        <TopLinks className="TopLinks" activeClassName="activetag" to="/comments">
+        <TopLinks activeClassName="activetag" to="/comments">
           comments
         </TopLinks>
       </HeaderWrapper>

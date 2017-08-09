@@ -12,6 +12,10 @@ const Post = styled('a')`
     color: #000000;
     text-decoration: none;
   }
+  &:hover {
+    color: #828282;
+    text-decoration: underline;
+  }
   &:visited {
     color: #828282;
     text-decoration: none;
