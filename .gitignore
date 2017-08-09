@@ -1,2 +1,7 @@
 node_modules
 package-lock.json
+.rempl_endpoint_id
+src/components/App.emotion.css
+src/components/CommentItem.emotion.css
+src/components/Header.emotion.css
+src/components/PostItem.emotion.css

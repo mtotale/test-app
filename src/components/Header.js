@@ -26,16 +26,16 @@ const Logo = styled('img')`
 export default class Header extends React.Component {
   render() {
     return (
-      <HeaderWrapper>
-        <TopLinks isHackerNews to="/home">
-          <Logo src="../pics/y18.gif" /> <b>Hacker News</b>
+      <HeaderWrapper className="Header">
+        <TopLinks className="TopLinks" isHackerNews to="/home">
+          <Logo className="Logo" src="../pics/y18.gif" /> <b>Hacker News</b>
         </TopLinks>{' '}
         {'  '}
-        <TopLinks activeClassName="activetag" to="/newposts">
+        <TopLinks className="TopLinks" activeClassName="activetag" to="/newposts">
           new
         </TopLinks>{' '}
         |{' '}
-        <TopLinks activeClassName="activetag" to="/comments">
+        <TopLinks className="TopLinks" activeClassName="activetag" to="/comments">
           comments
         </TopLinks>
       </HeaderWrapper>

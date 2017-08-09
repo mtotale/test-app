@@ -2,6 +2,7 @@ const debug = process.env.NODE_ENV !== 'production';
 const webpack = require('webpack');
 const path = require('path');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const RuntimeAnalyzerPlugin = require('webpack-runtime-analyzer');
 
 module.exports = {
   context: path.join(__dirname, 'src'),
@@ -23,9 +24,13 @@ module.exports = {
             'react-html-attrs',
             'transform-class-properties',
             'transform-decorators-legacy',
-            'emotion/babel',
+            ['emotion/babel', { extractStatic: true }],
           ],
         },
+      },
+      {
+        test: [/emotion\.css$/, /\.css$/],
+        loader: 'style-loader!css-loader',
       },
     ],
   },
@@ -38,5 +43,6 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
     new BundleAnalyzerPlugin(),
+    new RuntimeAnalyzerPlugin(),
   ],
 };
